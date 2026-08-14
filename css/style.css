@@ -505,7 +505,7 @@ section{ position: relative; padding: 108px 0; }
 }
 .about-card .avatar-frame::after{
   content:""; position:absolute; inset:0;
-  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), transparent 55%);
+  background: radial-gradient(circle at 30% 20%, rgba(29, 20, 20, 0.533), transparent 55%);
 }
 .about-facts{ display:grid; gap:12px; text-align:left; margin-top: 10px; }
 .about-fact{

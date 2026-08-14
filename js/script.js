@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (stackTrack) {
     const stackItems = [
       { name: 'HTML5', color: '#E44D26' },
-      { name: 'CSS3', color: '#264DE4' },
+      { name: 'CSS', color: '#264DE4' },
       { name: 'JavaScript', color: '#F0DB4F' },
       { name: 'Git', color: '#F05032' },
       { name: 'GitHub', color: '#8B93A7' },
