@@ -445,14 +445,17 @@ section{ position: relative; padding: 108px 0; }
   line-height: 1.85;
   min-height: 300px;
 }
-.terminal-body .ln{ color: var(--text-faint); display:inline-block; width:20px; user-select:none; }
+.terminal-body .ln{ color: var(--text-faint); display:inline-block; width: 20px; user-select:none; }
 .tk-key{ color: var(--accent-2); }
 .tk-str{ color: #C4E17F; }
 [data-theme="light"] .tk-str{ color:#1f8a3d; }
 .tk-punc{ color: var(--text-faint); }
 .tk-bool{ color: var(--accent-warn); }
 .tk-comment{ color: var(--text-faint); font-style: italic; }
-#typing-target{ color: var(--text); }
+#typing-target {
+  color: var(--text);
+  white-space: pre-line;
+}
 .type-caret{
   display:inline-block; width:8px; height:1.05em; background: var(--accent-1);
   vertical-align: text-bottom; margin-left:2px;
