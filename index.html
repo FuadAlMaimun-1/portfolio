@@ -8,6 +8,8 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
   <title>Fuad Al Maimun — Frontend Developer in Dhaka, Bangladesh</title>
   <meta name="description"
     content="Fuad Al Maimun is a frontend developer based in Dhaka, Bangladesh, building clean, responsive, accessible websites with HTML, CSS and JavaScript. Available for freelance projects and full-time roles." />
@@ -1141,51 +1143,62 @@
             </a>
           </div>
 
-          <form class="contact-form glass" id="contact-form" data-reveal data-reveal-delay="1" novalidate>
-            <div class="form-success" id="form-success" role="status">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-              Message ready — your email app should now be open to send it.
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required autocomplete="name" />
-                <span class="form-error" id="err-name"></span>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required autocomplete="email" />
-                <span class="form-error" id="err-email"></span>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group full">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required />
-                <span class="form-error" id="err-subject"></span>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group full">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-                <span class="form-error" id="err-message"></span>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%" data-ripple>
-              Send Message
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
-            </button>
-            <p class="form-note">
-              This form opens your email client with the message pre-filled.
-              For a fully automated inbox, connect it to a form service like
-              Formspree.
-            </p>
-          </form>
+        <form class="contact-form glass" id="contact-form" action="https://api.web3forms.com/submit" method="POST" data-reveal data-reveal-delay="1" novalidate>
+  
+  <!-- Web3Forms Access Key (এখানে আপনার কি-টি বসাবেন) -->
+  <input type="hidden" name="access_key" value="9338b7f7-d8dc-4894-bb33-93df710a9c2e">
+
+  <!-- প্রেরকের জায়গায় আপনার ব্র্যান্ড বা ওয়েবসাইটের নাম দেখাবে -->
+<input type="hidden" name="from_name" value="Fuad Dev Portfolio">
+
+  <div class="form-success" id="form-success" role="status">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+    Message sent successfully! I will get back to you soon.
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required autocomplete="name" />
+      <span class="form-error" id="err-name"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email" />
+      <span class="form-error" id="err-email"></span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group full">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" required />
+      <span class="form-error" id="err-subject"></span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group full">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+      <span class="form-error" id="err-message"></span>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="width: 100%" data-ripple>
+    Send Message
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+      <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+    </svg>
+  </button>
+
+  <p class="form-note">
+    Your message will be sent directly to my email inbox.
+  </p>
+</form>
         </div>
       </div>
     </section>
@@ -1263,6 +1276,7 @@
       </div>
     </div>
   </footer>
+
 
   <script src="js/script.js" defer></script>
 </body>

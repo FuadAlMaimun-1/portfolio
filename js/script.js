@@ -436,42 +436,54 @@ if ('IntersectionObserver' in window) {
     });
   });
 
-  /* ---------------- Contact form (client-side validation + mailto) ---------------- */
-  const form = document.getElementById('contact-form');
-  const formSuccess = document.getElementById('form-success');
-  if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let valid = true;
-      const fields = ['name', 'email', 'subject', 'message'];
-      fields.forEach(field => {
-        const input = document.getElementById(field);
-        const errorEl = document.getElementById('err-' + field);
-        errorEl.textContent = '';
-        if (!input.value.trim()) {
-          errorEl.textContent = 'This field is required.';
-          valid = false;
-        } else if (field === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          errorEl.textContent = 'Please enter a valid email address.';
-          valid = false;
-        }
-      });
-      if (!valid) return;
+  /* ---------------- Contact Form Handling (Web3Forms) ---------------- */
+const contactForm = document.getElementById('contact-form');
+const formSuccess = document.getElementById('form-success');
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
+if (contactForm) {
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const mailBody = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-      const mailtoLink = `mailto:fuadmaymun0@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
+    // Submit বাটনে ক্লিক করার সাথে সাথে বাটনটি Disable করে দেওয়া (যাতে বারবার ক্লিক না করা যায়)
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerText = 'Sending...';
+    submitBtn.disabled = true;
 
-      formSuccess.classList.add('show');
-      window.location.href = mailtoLink;
-      form.reset();
-      setTimeout(() => formSuccess.classList.remove('show'), 6000);
+    // ফর্মের ডাটা সংগ্রহ করা
+    const formData = new FormData(contactForm);
+
+    // API-তে ডাটা পাঠানো
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status == 200) {
+        // সফলভাবে মেসেজ গেলে সাকসেস মেসেজ দেখাবে
+        formSuccess.style.display = 'flex';
+        contactForm.reset(); // ফর্ম রিসেট করবে
+      } else {
+        alert(json.message || 'Something went wrong!');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Error sending message. Please try again!');
+    })
+    .finally(() => {
+      // বাটন আগের অবস্থায় নিয়ে যাওয়া
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+
+      // ৫ সেকেন্ড পর সাকসেস মেসেজটি অটোমেটিক সরিয়ে নেওয়া
+      setTimeout(() => {
+        if (formSuccess) formSuccess.style.display = 'none';
+      }, 5000);
     });
-  }
+  });
+}
 
   /* ---------------- Footer year ---------------- */
   const yearEl = document.getElementById('year');
