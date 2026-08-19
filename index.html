@@ -1143,15 +1143,15 @@
             </a>
           </div>
 
-        <form class="contact-form glass" id="contact-form" action="https://api.web3forms.com/submit" method="POST" data-reveal data-reveal-delay="1" novalidate>
+          <form class="contact-form glass" id="contact-form" action="https://api.web3forms.com/submit" method="POST" data-reveal data-reveal-delay="1">
   
-  <!-- Web3Forms Access Key (এখানে আপনার কি-টি বসাবেন) -->
+  <!-- Web3Forms Access Key -->
   <input type="hidden" name="access_key" value="9338b7f7-d8dc-4894-bb33-93df710a9c2e">
 
-  <!-- প্রেরকের জায়গায় আপনার ব্র্যান্ড বা ওয়েবসাইটের নাম দেখাবে -->
-<input type="hidden" name="from_name" value="Fuad Dev Portfolio">
+  <!-- প্রেরকের জায়গায় নাম -->
+  <input type="hidden" name="from_name" value="Fuad Dev Portfolio">
 
-  <div class="form-success" id="form-success" role="status">
+  <div class="form-success" id="form-success" role="status" style="display: none;">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
       <path d="M20 6L9 17l-5-5" />
     </svg>
@@ -1161,13 +1161,13 @@
   <div class="form-row">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" id="name" name="name" required autocomplete="name" />
+      <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your Name" />
       <span class="form-error" id="err-name"></span>
     </div>
 
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required autocomplete="email" />
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="Your Email" />
       <span class="form-error" id="err-email"></span>
     </div>
   </div>
@@ -1175,7 +1175,7 @@
   <div class="form-row">
     <div class="form-group full">
       <label for="subject">Subject</label>
-      <input type="text" id="subject" name="subject" required />
+      <input type="text" id="subject" name="subject" required placeholder="Subject" />
       <span class="form-error" id="err-subject"></span>
     </div>
   </div>
@@ -1183,7 +1183,7 @@
   <div class="form-row">
     <div class="form-group full">
       <label for="message">Message</label>
-      <textarea id="message" name="message" required></textarea>
+      <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
       <span class="form-error" id="err-message"></span>
     </div>
   </div>
@@ -1199,6 +1199,7 @@
     Your message will be sent directly to my email inbox.
   </p>
 </form>
+
         </div>
       </div>
     </section>

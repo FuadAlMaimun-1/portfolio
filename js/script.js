@@ -436,7 +436,9 @@ if ('IntersectionObserver' in window) {
     });
   });
 
-  /* ---------------- Contact Form Handling (Web3Forms) ---------------- */
+ /* ---------------- Contact Form Handling ---------------- */
+
+ /* ---------------- Contact Form Handling (Web3Forms) ---------------- */
 const contactForm = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
 
@@ -484,6 +486,7 @@ if (contactForm) {
     });
   });
 }
+
 
   /* ---------------- Footer year ---------------- */
   const yearEl = document.getElementById('year');
