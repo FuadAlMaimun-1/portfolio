@@ -231,47 +231,68 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(animateCounter);
   }
 
-  /* ---------------- Skills tabs ---------------- */
-  const skillTabs = document.querySelectorAll('.skills-tab');
-  const skillsCurrent = document.getElementById('skills-current');
-  const skillsLearning = document.getElementById('skills-learning');
-  skillTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      skillTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const isCurrent = tab.dataset.tab === 'current';
-      skillsCurrent.hidden = !isCurrent;
-      skillsLearning.hidden = isCurrent;
-      animateVisibleSkillBars();
+/* ---------------- Skills tabs & Animated skill bars ---------------- */
+const skillTabs = document.querySelectorAll('.skills-tab');
+const skillsCurrent = document.getElementById('skills-current');
+const skillsLearning = document.getElementById('skills-learning');
+
+function animateVisibleSkillBars() {
+  const activePanel = document.querySelector('.skills-grid:not([hidden])');
+  if (!activePanel) return;
+
+  const fills = activePanel.querySelectorAll('.skill-bar-fill');
+  fills.forEach(fill => {
+    const level = fill.dataset.level || '0';
+    requestAnimationFrame(() => {
+      fill.style.width = `${level}%`;
     });
   });
+}
 
-  /* ---------------- Animated skill bars ---------------- */
-  function animateVisibleSkillBars() {
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-      const parent = bar.closest('[hidden]');
-      if (parent) return;
-      const level = bar.getAttribute('data-level');
-      requestAnimationFrame(() => { bar.style.width = level + '%'; });
+skillTabs.forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    skillTabs.forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
     });
-  }
-  if ('IntersectionObserver' in window) {
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection) {
-      const skillIO = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateVisibleSkillBars();
-            skillIO.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      skillIO.observe(skillsSection);
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    const targetTab = tab.getAttribute('data-tab');
+
+    if (targetTab === 'learning') {
+      skillsCurrent.setAttribute('hidden', 'true');
+      skillsLearning.removeAttribute('hidden');
+    } else {
+      skillsLearning.setAttribute('hidden', 'true');
+      skillsCurrent.removeAttribute('hidden');
     }
-  } else {
+
     animateVisibleSkillBars();
+  });
+});
+
+// Scroll Intersection Observer for Skills
+if ('IntersectionObserver' in window) {
+  const skillsSection = document.getElementById('skills');
+  if (skillsSection) {
+    const skillIO = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateVisibleSkillBars();
+          skillIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    skillIO.observe(skillsSection);
   }
+} else {
+  animateVisibleSkillBars();
+}
+  
 
   /* ---------------- Tech stack marquee ---------------- */
   const stackTrack = document.getElementById('stack-track');
@@ -280,12 +301,15 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'HTML5', color: '#E44D26' },
       { name: 'CSS', color: '#264DE4' },
       { name: 'JavaScript', color: '#F0DB4F' },
+      { name: 'TypeScript', color: '#3178C6' },
+      { name: 'Tailwind CSS', color: '#06B6D4' },
       { name: 'Git', color: '#F05032' },
       { name: 'GitHub', color: '#8B93A7' },
       { name: 'VS Code', color: '#007ACC' },
       { name: 'Flexbox', color: '#22D3EE' },
       { name: 'CSS Grid', color: '#22D3EE' },
       { name: 'React (learning)', color: '#61DAFB' },
+      { name: 'Next.js (learning)', color: '#007ACC' },
       { name: 'Node.js (learning)', color: '#68A063' },
       { name: 'MongoDB (learning)', color: '#47A248' },
       { name: 'REST API (learning)', color: '#22D3EE' }

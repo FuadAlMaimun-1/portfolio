@@ -546,6 +546,11 @@ section{ position: relative; padding: 108px 0; }
 .skills-grid{
   display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
 }
+
+.skills-grid[hidden] {
+  display: none !important;
+}
+
 .skill-card{
   padding: 22px; display:flex; flex-direction:column; gap:14px;
   transition: transform .3s var(--ease), border-color .3s var(--ease);
@@ -564,7 +569,9 @@ section{ position: relative; padding: 108px 0; }
   height:100%; border-radius: var(--radius-pill); background: var(--grad-brand);
   width:0%; transition: width 1.4s var(--ease);
 }
-.learning-note{ margin-top: 40px; display:flex; align-items:center; gap:12px; font-family: var(--font-mono); font-size:.85rem; color: var(--text-faint); }
+
+
+.learning-note{ margin-left: 100px; display:flex; align-items:center; gap:12px; font-family: var(--font-mono); font-size:.85rem; color: var(--text-faint); }
 @media (max-width:820px){ .skills-grid{ grid-template-columns: repeat(2,1fr); } }
 @media (max-width:560px){ .skills-grid{ grid-template-columns: 1fr; } }
 
@@ -578,6 +585,23 @@ section{ position: relative; padding: 108px 0; }
   display:flex; gap: 18px; width: max-content;
   animation: marquee 26s linear infinite;
 }
+
+/* পুরো সেকশনটি মাঝখানে আনার জন্য */
+.mt-lg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* ভিতরের কনটেন্টগুলো সেন্টারে রাখবে */
+  justify-content: center;
+  text-align: center;      /* হেডিং মাঝখানে আনবে */
+  width: 100%;             /* পুরো জায়গা নেওয়ার জন্য */
+}
+
+/* Marquee ট্র্যাক যাতে পুরো চওড়া জুড়ে কাজ করে */
+.stack-marquee {
+  width: 100%;             
+  overflow: hidden;        /* স্ক্রোলবার বন্ধ রাখতে */
+}
+
 .stack-track:hover{ animation-play-state: paused; }
 @keyframes marquee{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
 .stack-chip{
